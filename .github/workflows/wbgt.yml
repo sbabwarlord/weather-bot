@@ -1,0 +1,25 @@
+name: WBGT Hourly Update
+
+on:
+  workflow_dispatch:
+
+jobs:
+  send-wbgt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests python-telegram-bot
+
+      - name: Run bot
+        run: python wbgt_bot.py
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+          THREAD_ID: ${{ secrets.THREAD_ID }}
