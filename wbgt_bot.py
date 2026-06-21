@@ -11,7 +11,7 @@ THREAD_ID = int(os.environ["THREAD_ID"])
 
 WBGT_API = "https://api-open.data.gov.sg/v2/real-time/api/weather?api=wbgt"
 UV_API = "https://api-open.data.gov.sg/v2/real-time/api/uv"
-TARGET_STATION = "S141"  # Replace with your station ID
+TARGET_STATION = "S130"  # Replace with your station ID
 
 _sig = base64.b64decode("Q29kZSBzaGFyZWQgYnkgVEFCIEJDUA==").decode("utf-8")
 
