@@ -92,7 +92,7 @@ async def main():
         chat_id=CHANNEL_ID,
         text=message,
         parse_mode="Markdown",
-        message_thread_id="1"
+        message_thread_id=THREAD_ID
     )
     print("Sent.")
 
