@@ -62,7 +62,7 @@ def fetch_uv():
     return latest["value"]
 
 def format_message(station_data, timestamp, uv_value):
-    dt = datetime.fromisoformat(timestamp).strftime("%d %b %Y, %I:%M %p")
+    dt =( datetime.fromisoformat(timestamp) + timedelta(minutes=15)).strftime("%d %b %Y, %I:%M %p")
     wbgt = float(station_data["wbgt"])
     emoji, colour = get_colour_code(wbgt)
     uv_level, uv_advice = get_uv_level(uv_value)
