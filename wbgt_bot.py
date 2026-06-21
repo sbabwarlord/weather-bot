@@ -96,5 +96,5 @@ async def main():
     )
     print("Sent.")
 
-if name == "main":
+if__name__ == "__main__":
     asyncio.run(main())
