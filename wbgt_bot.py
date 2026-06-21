@@ -77,7 +77,7 @@ def format_message(station_data, timestamp, uv_value):
         f"UV Index: *{uv_value}* ({uv_level})\n"
         f"Advisory: _{uv_advice}_\n\n"
         f"━━━━━━━━━━━━━━━\n"
-        f"_{_sig}_"
+        # f"_{_sig}_"
     )
 
 async def main():
