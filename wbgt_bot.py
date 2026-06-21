@@ -88,6 +88,9 @@ async def main():
     uv_value = fetch_uv()
     message = format_message(station_data, timestamp, uv_value)
     bot = Bot(token=TELEGRAM_TOKEN)
+    updates = await bot.get_updates()
+    for u in updates: 
+          print(u)
     await bot.send_message(
         chat_id=CHANNEL_ID,
         text=message,
