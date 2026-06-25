@@ -68,15 +68,16 @@ def format_message(station_data, timestamp, uv_value):
     uv_level, uv_advice = get_uv_level(uv_value)
 
     return (
-        f"🌡️ *WBGT Update* 🌡️\n"
-        f"🕐 {dt}\n\n"
-        f"WBGT: *{wbgt:.1f}°C*\n"
-        f"Colour Code: {emoji} *{colour}*\n\n"
-        f"━━━━━━━━━━━━━━━\n\n"
+      #  f"🌡️ *WBGT Update* 🌡️\n"
+     #   f"🕐 {dt}\n\n"
+     #   f"WBGT: *{wbgt:.1f}°C*\n"
+      #  f"Colour Code: {emoji} *{colour}*\n\n"
+      #  f"━━━━━━━━━━━━━━━\n\n"
         f"☀️ *UV Index in Singapore* 🇸🇬\n\n"
+        f"🕐 {dt}\n\n"
         f"UV Index: *{uv_value}* ({uv_level})\n"
         f"Advisory: _{uv_advice}_\n\n"
-        f"━━━━━━━━━━━━━━━\n"
+     #   f"━━━━━━━━━━━━━━━\n"
         # f"_{_sig}_"
     )
 
