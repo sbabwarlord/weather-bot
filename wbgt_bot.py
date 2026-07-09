@@ -12,7 +12,7 @@ THREAD_ID = int(os.environ["THREAD_ID"])
 
 WBGT_API = "https://api-open.data.gov.sg/v2/real-time/api/weather?api=wbgt"
 UV_API = "https://api-open.data.gov.sg/v2/real-time/api/uv"
-TARGET_STATION = "S126"
+TARGET_STATION = "S143"
 
 STATE_FILE = "state.json"
 
