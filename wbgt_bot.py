@@ -87,7 +87,7 @@ async def main():
     current_status = get_uv_status(uv)
     previous_status = load_previous_status()
 
-    if current_status !== previous_status:
+    if current_status != previous_status:
 
         if not (previous_status is None and current_status == "LOW"):
 
