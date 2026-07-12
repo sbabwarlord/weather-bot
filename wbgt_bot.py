@@ -11,7 +11,7 @@ UV_API = "https://api-open.data.gov.sg/v2/real-time/api/uv"
 
 STATE_FILE = "last_uv_status.txt"
 
-def fetch_uv();
+def fetch_uv():
     response = requestes.get(UV_API,timeout=10)
     response.raise_for_status()
     data = response.json()
