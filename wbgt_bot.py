@@ -40,36 +40,36 @@ def get_message(status,uv):
             "No sun protection is required."
         )
 
-    elif status == "MODERATE";
+    elif status == "MODERATE":
         return (
-            "*UV Index in Singapore* 🇸🇬\n\"
-        f"Current UV Index: *{uv}*\n"
-        "Risk Level: *MODERATE*\n\n"
-        "Some protection against sunburn is needed"
+             "*UV Index Update in Singapore* 🇸🇬\n\n"
+            f"Current UV Index: *{uv}*\n"
+            "Risk Level: *MODERATE*\n\n"
+            "Some protection against sunburn is needed"
     )
 
-     elif status == "HIGH";
-        return (
-            "*UV Index in Singapore* 🇸🇬\n\"
-        f"Current UV Index: *{uv}*\n"
-        "Risk Level: *HIGHTE*\n\n"
-        Reduce prolonged exposure to the sun"
+     elif status == "HIGH":
+         return (
+            "*UV Index Update in Singapore* 🇸🇬\n\n"
+            f"Current UV Index: *{uv}*\n"
+            "Risk Level: *HIGHTE*\n\n"
+            Reduce prolonged exposure to the sun"
     )
 
-     elif status == "VERY HIGH";
-        return (
-            "*UV Index in Singapore* 🇸🇬\n\"
-        f"Current UV Index: *{uv}*\n"
-        "Risk Level: *VERY HIGH*\n\n"
-        Extra sun protection is strongly recommended"
+     elif status == "VERY HIGH":
+         return (
+            "*UV Index Update in Singapore* 🇸🇬\n\n"
+            f"Current UV Index: *{uv}*\n"
+            "Risk Level: *VERY HIGH*\n\n"
+            Extra sun protection is strongly recommended"
     )
 
-     elif status == "EXTREME";
+     elif status == "EXTREME":
         return (
-            "*UV Index in Singapore* 🇸🇬\n\"
-        f"Current UV Index: *{uv}*\n"
-        "Risk Level: *EXTREME*\n\n"
-        Avoid outdoor activities where possible"
+            "*UV Index Update in Singapore* 🇸🇬\n\n"
+            f"Current UV Index: *{uv}*\n"
+            "Risk Level: *EXTREME*\n\n"
+            Avoid outdoor activities where possible"
     )
     
 def load_previous_status():
