@@ -73,7 +73,7 @@ def get_message(status,uv):
     )
     
 def load_previous_status():
-    if os.path.exists(StATE_FILE):
+    if os.path.exists(STATE_FILE):
         with open(STATE_FILE, "r") as f:
             return f.read().strip()
     return None
