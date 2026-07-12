@@ -41,7 +41,7 @@ def format_message(uv_value)
 
 async def main():
     uv_value = fetch_uv()
-    message = format_message(station_data, timestamp, uv_value)
+    message = format_message(samp, uv_value)
     bot = Bot(token=TELEGRAM_TOKEN)
     await bot.send_message(
         chat_id=CHANNEL_ID,
