@@ -33,7 +33,7 @@ def get_message(status,uv):
 
     if status =="LOW":
         return (
-            " *UV Index Update in Singapore* 🇸🇬\n\n"
+            "*UV Index Update in Singapore* 🇸🇬\n\n"
             f"Current UV Index: *{uv}*\n"
             "Risk Level: *LOW*\n\n"
             "UV Level have dropped to a low level.\n"
@@ -42,7 +42,7 @@ def get_message(status,uv):
 
     elif status == "MODERATE";
         return (
-            "☀️ *UV Index in Singapore* 🇸🇬\n\"
+            "*UV Index in Singapore* 🇸🇬\n\"
         f"Current UV Index: *{uv}*\n"
         "Risk Level: *MODERATE*\n\n"
         "Some protection against sunburn is needed"
