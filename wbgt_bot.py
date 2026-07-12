@@ -5,7 +5,7 @@ import os
 
 TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
 CHANNEL_ID = os.environ["CHANNEL_ID"]
-THREAD_ID = int(os.environ["THREAD_ID"])
+# THREAD_ID = int(os.environ["THREAD_ID"])
 
 UV_API = "https://api-open.data.gov.sg/v2/real-time/api/uv"
 
@@ -97,10 +97,10 @@ async def main():
                 chat_id=CHANNEL_ID,
                 text=get_message(current_status,uv),
                 parse_mode="Markdown",
-                message_thread_id=THREAD_ID
+               #message_thread_id=THREAD_ID
             )
 
-            print(f"Notificaiton sent: {current_status}")
+            print(f"Notification sent: {current_status}")
 
     save_status(current_status)
 
