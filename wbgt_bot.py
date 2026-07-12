@@ -29,7 +29,7 @@ def fetch_uv():
     latest = index_list[0]
     return latest["value"]
 
-def format_message(uv_value)
+def format_message(uv_value):
     uv_level, uv_advice = get_uv_level(uv_value)
 
     return (
