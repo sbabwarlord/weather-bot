@@ -35,36 +35,36 @@ def get_uv_status(uv):
 def get_message(status, uv):
     if status == "LOW":
         return (
-            "*UV Index Update*\n\n"
+            "*☀️ UV Index in Singapore 🇸🇬*\n\n"
             f"Current UV Index: *{uv}*\n"
             "Risk Level: *LOW*\n\n"
             "UV levels have dropped to a low level.\n"
-            "No special sun protection is required."
+            "No sun protection is required."
         )
     elif status == "MODERATE":
         return (
-            "*UV Index Update*\n\n"
+            "*☀️ UV Index in Singapore 🇸🇬*\n\n"
             f"Current UV Index: *{uv}*\n"
             "Risk Level: *MODERATE*\n\n"
             "Some protection against sunburn is needed."
         )
     elif status == "HIGH":
         return (
-            "*UV Index Update*\n\n"
+            "*☀️ UV Index in Singapore 🇸🇬*\n\n"
             f"Current UV Index: *{uv}*\n"
             "Risk Level: *HIGH*\n\n"
             "Reduce prolonged exposure to the sun."
         )
     elif status == "VERY HIGH":
         return (
-            "*UV Index Update*\n\n"
+            "*☀️ UV Index in Singapore 🇸🇬*\n\n"
             f"Current UV Index: *{uv}*\n"
             "Risk Level: *VERY HIGH*\n\n"
             "Extra sun protection is strongly recommended."
         )
     else:
         return (
-            "*UV Index Update*\n\n"
+            "*☀️ UV Index in Singapore 🇸🇬*\n\n"
             f"Current UV Index: *{uv}*\n"
             "Risk Level: *EXTREME*\n\n"
             "Avoid outdoor activities where possible."
