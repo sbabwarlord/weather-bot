@@ -48,15 +48,15 @@ def get_message(status,uv):
             "Some protection against sunburn is needed"
     )
 
-     elif status == "HIGH":
+    elif status == "HIGH":
          return (
             "*UV Index Update in Singapore* 🇸🇬\n\n"
             f"Current UV Index: *{uv}*\n"
-            "Risk Level: *HIGHTE*\n\n"
+            "Risk Level: *HIGH*\n\n"
             Reduce prolonged exposure to the sun"
     )
 
-     elif status == "VERY HIGH":
+    elif status == "VERY HIGH":
          return (
             "*UV Index Update in Singapore* 🇸🇬\n\n"
             f"Current UV Index: *{uv}*\n"
@@ -64,7 +64,7 @@ def get_message(status,uv):
             Extra sun protection is strongly recommended"
     )
 
-     elif status == "EXTREME":
+    elif status == "EXTREME":
         return (
             "*UV Index Update in Singapore* 🇸🇬\n\n"
             f"Current UV Index: *{uv}*\n"
