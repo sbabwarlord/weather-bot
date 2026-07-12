@@ -1,4 +1,4 @@
-name: WBGT Hourly Update
+name: UV Index Update
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: write   # required so the workflow can commit & push the state file back
 
 jobs:
-  send-wbgt:
+  send-uv:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -21,7 +21,7 @@ jobs:
         run: pip install requests python-telegram-bot
 
       - name: Run bot
-        run: python wbgt_bot.py
+        run: python uv_bot.py
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
@@ -32,5 +32,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add last_uv_status.txt
-          git diff --quiet --cached || git commit -m "Update WBGT status"
+          git diff --quiet --cached || git commit -m "Update uv status"
           git push
