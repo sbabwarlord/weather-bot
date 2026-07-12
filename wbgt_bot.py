@@ -36,7 +36,7 @@ def get_message(status,uv):
             " *UV Index Update in Singapore* 🇸🇬\n\n"
             f"Current UV Index: *{uv}*\n"
             "Risk Level: *LOW*\n\n"
-            "UV Level have dropped to a low level.\n
+            "UV Level have dropped to a low level.\n"
             "No sun protection is required."
         )
 
