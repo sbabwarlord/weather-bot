@@ -97,7 +97,7 @@ async def main():
                 chat_id=CHANNEL_ID,
                 text=get_message(current_status,uv),
                 parse_mode="Markdown",
-                message_thread id=THREAD_ID
+                message_thread_id=THREAD_ID
             )
 
             print(f"Notificaiton sent: {current_status}")
