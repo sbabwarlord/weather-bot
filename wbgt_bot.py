@@ -7,7 +7,7 @@ import base64
 
 TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
 CHANNEL_ID = os.environ["CHANNEL_ID"]
-THREAD_ID = int(os.environ["THREAD_ID"])
+# THREAD_ID = int(os.environ["THREAD_ID"])
 
 WBGT_API = "https://api-open.data.gov.sg/v2/real-time/api/weather?api=wbgt"
 UV_API = "https://api-open.data.gov.sg/v2/real-time/api/uv"
