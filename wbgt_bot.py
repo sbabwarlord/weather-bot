@@ -53,7 +53,7 @@ def get_message(status,uv):
             "*UV Index Update in Singapore* 🇸🇬\n\n"
             f"Current UV Index: *{uv}*\n"
             "Risk Level: *HIGH*\n\n"
-            Reduce prolonged exposure to the sun"
+            "Reduce prolonged exposure to the sun"
     )
 
     elif status == "VERY HIGH":
@@ -61,7 +61,7 @@ def get_message(status,uv):
             "*UV Index Update in Singapore* 🇸🇬\n\n"
             f"Current UV Index: *{uv}*\n"
             "Risk Level: *VERY HIGH*\n\n"
-            Extra sun protection is strongly recommended"
+            "Extra sun protection is strongly recommended"
     )
 
     elif status == "EXTREME":
@@ -69,7 +69,7 @@ def get_message(status,uv):
             "*UV Index Update in Singapore* 🇸🇬\n\n"
             f"Current UV Index: *{uv}*\n"
             "Risk Level: *EXTREME*\n\n"
-            Avoid outdoor activities where possible"
+            "Avoid outdoor activities where possible"
     )
     
 def load_previous_status():
