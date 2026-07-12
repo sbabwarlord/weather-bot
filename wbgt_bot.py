@@ -5,57 +5,103 @@ import os
 
 TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
 CHANNEL_ID = os.environ["CHANNEL_ID"]
-# THREAD_ID = int(os.environ["THREAD_ID"])
 
 UV_API = "https://api-open.data.gov.sg/v2/real-time/api/uv"
 
-
-def get_uv_level(uv_value: int):
-    if uv_value <= 2:
-        return "Low", "No protection needed"
-    elif uv_value <= 5:
-        return "Moderate", "Some protection against sunburn is needed"
-    elif uv_value <= 7:
-        return "High", "Some protection against sunburn is needed"
-    elif uv_value <= 10:
-        return "Very High", "Extra protection against sunburn is needed"
-    else:
-        return "Extreme", "Extra protection against sunburn is needed"
+# File to remember the previous UV category
+STATE_FILE = "last_uv_status.txt"
 
 
 def fetch_uv():
     response = requests.get(UV_API, timeout=10)
     response.raise_for_status()
     data = response.json()
-    index_list = data["data"]["records"][0]["index"]
-    latest = index_list[0]
-    return latest["value"]
+    return data["data"]["records"][0]["index"][0]["value"]
 
 
-def format_message(uv_value):
-    uv_level, uv_advice = get_uv_level(uv_value)
+def get_uv_status(uv):
+    if uv <= 2:
+        return "LOW"
+    elif uv <= 5:
+        return "MODERATE"
+    elif uv <= 7:
+        return "HIGH"
+    elif uv <= 10:
+        return "VERY HIGH"
+    else:
+        return "EXTREME"
 
-    return (
-        f"☀️ *UV Index in Singapore* 🇸🇬\n\n"
-        f"UV Index: *{uv_value}* ({uv_level})\n"
-        f"Advisory: _{uv_advice}_\n\n"
-        f"━━━━━━━━━━━━━━━"
-    )
+
+def get_message(status, uv):
+    if status == "LOW":
+        return (
+            "*UV Index Update*\n\n"
+            f"Current UV Index: *{uv}*\n"
+            "Risk Level: *LOW*\n\n"
+            "UV levels have dropped to a low level.\n"
+            "No special sun protection is required."
+        )
+    elif status == "MODERATE":
+        return (
+            "*UV Index Update*\n\n"
+            f"Current UV Index: *{uv}*\n"
+            "Risk Level: *MODERATE*\n\n"
+            "Some protection against sunburn is needed."
+        )
+    elif status == "HIGH":
+        return (
+            "*UV Index Update*\n\n"
+            f"Current UV Index: *{uv}*\n"
+            "Risk Level: *HIGH*\n\n"
+            "Reduce prolonged exposure to the sun."
+        )
+    elif status == "VERY HIGH":
+        return (
+            "*UV Index Update*\n\n"
+            f"Current UV Index: *{uv}*\n"
+            "Risk Level: *VERY HIGH*\n\n"
+            "Extra sun protection is strongly recommended."
+        )
+    else:
+        return (
+            "*UV Index Update*\n\n"
+            f"Current UV Index: *{uv}*\n"
+            "Risk Level: *EXTREME*\n\n"
+            "Avoid outdoor activities where possible."
+        )
+
+
+def load_previous_status():
+    if os.path.exists(STATE_FILE):
+        with open(STATE_FILE, "r") as f:
+            return f.read().strip()
+    return None
+
+
+def save_status(status):
+    with open(STATE_FILE, "w") as f:
+        f.write(status)
 
 
 async def main():
-    uv_value = fetch_uv()
-    message = format_message(uv_value)
+    uv = fetch_uv()
+    current_status = get_uv_status(uv)
+    previous_status = load_previous_status()
 
-    bot = Bot(token=TELEGRAM_TOKEN)
-    await bot.send_message(
-        chat_id=CHANNEL_ID,
-        text=message,
-        parse_mode="Markdown",
-        # message_thread_id=THREAD_ID
-    )
+    # Only send when the UV category changes
+    if current_status != previous_status:
+        # Skip the very first run if UV is LOW
+        if not (previous_status is None and current_status == "LOW"):
+            bot = Bot(token=TELEGRAM_TOKEN)
+            await bot.send_message(
+                chat_id=CHANNEL_ID,
+                text=get_message(current_status, uv),
+                parse_mode="Markdown",
+            )
+            print(f"Notification sent: {current_status}")
 
-    print("Sent.")
+    # Save the current category for the next run
+    save_status(current_status)
 
 
 if __name__ == "__main__":
