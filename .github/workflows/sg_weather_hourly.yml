@@ -31,12 +31,10 @@ jobs:
       # GitHub Actions runners are ephemeral, so the UV "last status" file
       # written by the script would be lost after each run unless we commit
       # it back to the repo. This keeps UV change-detection working across runs.
-      - name: Persist UV state file
+      - name: Persist state files
         run: |
-          if [ -f last_uv_status.txt ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add last_uv_status.txt
-            git diff --cached --quiet || git commit -m "Update UV state [skip ci]"
-            git push
-          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f last_uv_status.txt last_psi_status.txt 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Update UV/PSI state [skip ci]"
+          git push
