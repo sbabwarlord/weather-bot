@@ -25,7 +25,7 @@ def fetch_psi():
     response = requests.get(PSI_API, timeout=10)
     response.raise_for_status()
     data = response.json()
-    return data["data"]["items"][0]["readings"]["psi_twenty_four_hourly"]["national"]
+    return data["data"]["items"][0]["readings"]["psi_twenty_four_hourly"]["north"]
 
 
 def get_uv_status(uv):
