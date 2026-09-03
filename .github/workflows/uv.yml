@@ -1,36 +1,42 @@
-name: UV Index Update
+name: Hourly SG PSI + UV to Telegram
 
 on:
-  workflow_dispatch:
-
-permissions:
-  contents: write   # required so the workflow can commit & push the state file back
+  schedule:
+    - cron: "5 * * * *"  # 5 minutes past every hour (UTC)
+  workflow_dispatch: {}
 
 jobs:
-  send-uv:
+  post-weather:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # needed to commit the UV state file back to the repo
     steps:
-      - uses: actions/checkout@v5
+      - name: Check out repo
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install requests python-telegram-bot
+        run: pip install -r requirements.txt
 
-      - name: Run bot
-        run: python uv_bot.py
+      - name: Fetch PSI + UV and post to Telegram
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
-          THREAD_ID: ${{ secrets.THREAD_ID }}
+        run: python sg_weather_to_telegram.py
 
-      - name: Commit updated state file
+      # GitHub Actions runners are ephemeral, so the UV "last status" file
+      # written by the script would be lost after each run unless we commit
+      # it back to the repo. This keeps UV change-detection working across runs.
+      - name: Persist UV state file
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add last_uv_status.txt
-          git diff --quiet --cached || git commit -m "Update uv status"
-          git push
+          if [ -f last_uv_status.txt ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add last_uv_status.txt
+            git diff --cached --quiet || git commit -m "Update UV state [skip ci]"
+            git push
+          fi
